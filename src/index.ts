@@ -44,7 +44,6 @@ joplin.plugins.register({
 				const latex = result.formData.equationForm.latex;
 				if (editortype == 'richtext') {
 					const marker = String.raw`\clap{\color{transparent}{TemporaryMarkerForMathLivePlugin${katexblockid}}}`;
-					console.log(marker);
 
 					function escapeRegex(s: string): string {
 						return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -98,7 +97,6 @@ joplin.plugins.register({
 		await joplin.contentScripts.onMessage(
 			'katexInterceptor',
 			async (message: any) => {
-				console.log('[KaTeX] Message received:', message);
 
 				if (message.type === 'latex') {
 					mathlivedialogue(message.text, "richtext", message.katexblockid);
@@ -111,7 +109,6 @@ joplin.plugins.register({
 			iconName: 'fas fa-square-root-alt',
 			execute: async () => {
 				const selectedText = await joplin.commands.execute('selectedText') as string;
-				console.log(selectedText);
 				mathlivedialogue(selectedText.replace(/^\$+|\$+$/g, ''));
 			},
 		});
@@ -168,9 +165,5 @@ joplin.plugins.register({
 			'mathLive',
 			ToolbarButtonLocation.EditorToolbar,
 		);
-
-
-
-		console.log('button created');
 	},
 });
