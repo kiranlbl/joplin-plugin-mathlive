@@ -6,7 +6,6 @@ if (!customElements.get('math-field')) {
 
 const mf = document.getElementById('mf') as MathfieldElement;
 mf.addEventListener('beforeinput', (ev: InputEvent) => {
-	console.log(ev.inputType);
 	if (ev.inputType === 'insertLineBreak') {
 		document.querySelector('form')?.requestSubmit();
 	}
