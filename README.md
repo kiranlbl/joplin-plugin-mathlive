@@ -1,4 +1,4 @@
-# Mathquill Joplin Plugin
+# MathLive Joplin Plugin
 
 Easily edit math equations with MathLive, no need to learn LaTeX.
 
