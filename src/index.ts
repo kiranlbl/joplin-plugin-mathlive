@@ -124,13 +124,6 @@ joplin.plugins.register({
 		async function updateNoteView() {
 			// Get the current note from the workspace.
 			const note = await joplin.workspace.selectedNote();
-
-			// Keep in mind that it can be `null` if nothing is currently selected!
-			if (note) {
-				console.info('Note content has changed! New note is:', note);
-			} else {
-				console.info('No note is selected');
-			}
 		}
 		await joplin.workspace.onNoteSelectionChange(() => {
 			updateNoteView();
@@ -140,7 +133,6 @@ joplin.plugins.register({
 		});
 		updateNoteView();
 		const dialog = await joplin.views.dialogs.create('mathLiveDialog');
-		//await joplin.views.dialogs.setFitToContent(dialog, false);
 		await joplin.views.dialogs.setHtml(dialog, `
 			<form name="equationForm">
 			<math-field id="mf" autofocus math-virtual-keyboard-policy="sandboxed" 
