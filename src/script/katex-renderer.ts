@@ -4,14 +4,12 @@ declare const webviewApi: {
 		message: any
 	) => Promise<any>;
 };
-console.log('[KaTeX] renderer script loaded');
 let currentEditable: HTMLElement | null = null;
 let currentSource: HTMLElement | null = null;
 function install() {
 	const editor = (window.parent as any).tinymce?.activeEditor;
 	const katexblockid: string = String(Math.floor(Math.random() * 100000)).padStart(5, "0");
 	if (!editor) {
-		console.log('[KaTeX] TinyMCE not available yet');
 		return false;
 	}
 
@@ -59,9 +57,6 @@ function install() {
 
 		return originalOpen.apply(this, args);
 	};
-
-	console.log('[KaTeX] TinyMCE interceptor installed');
-
 	return true;
 };
 
