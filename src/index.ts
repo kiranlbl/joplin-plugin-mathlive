@@ -28,6 +28,7 @@ joplin.plugins.register({
 			}
 		}
 		async function mathlivedialogue(initiallatex: string, editortype?: string, katexblockid?:string) {
+			const startTime = Date.now();
 			await joplin.views.dialogs.setHtml(dialog, `
 				<form name="equationForm">
 				<math-field id="mf" autofocus math-virtual-keyboard-policy="sandboxed" 
@@ -40,6 +41,11 @@ joplin.plugins.register({
 				</form>
 			`);	
 			const result = await joplin.views.dialogs.open(dialog);
+			const elapsed = Date.now() - startTime;
+			const remaining = Math.max(0, 1500 - elapsed);
+			if (remaining > 0) {
+				await new Promise(resolve => setTimeout(resolve, remaining));
+			}
 			if (result.id == 'ok' || result.id == 'submit') {
 				const latex = result.formData.equationForm.latex;
 				if (editortype == 'richtext') {
