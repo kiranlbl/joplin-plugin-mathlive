@@ -42,7 +42,7 @@ joplin.plugins.register({
 			`);	
 			const result = await joplin.views.dialogs.open(dialog);
 			const elapsed = Date.now() - startTime;
-			const remaining = Math.max(0, 2100 - elapsed);
+			const remaining = Math.max(0, 2400 - elapsed);
 			if (remaining > 0) {
 				await new Promise(resolve => setTimeout(resolve, remaining));
 			}
