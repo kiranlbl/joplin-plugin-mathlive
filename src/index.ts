@@ -46,7 +46,7 @@ joplin.plugins.register({
 			if (remaining > 0) {
 				await new Promise(resolve => setTimeout(resolve, remaining));
 			}
-			if (result.id == 'ok' || result.id == 'submit') {
+			if ((result.id == 'ok' || result.id == 'submit') && result.formData?.equationForm?.latex) {
 				const latex = result.formData.equationForm.latex;
 				if (editortype == 'richtext') {
 					const marker = String.raw`\clap{\color{transparent}{TemporaryMarkerForMathLivePlugin${katexblockid}}}`;
