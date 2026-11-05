@@ -7,27 +7,7 @@ if (!customElements.get('math-field')) {
 
 joplin.plugins.register({
 	onStart: async function() {
-		async function clearTemporaryMarkers() {
-			const note = await joplin.workspace.selectedNote();
-
-			if (!note) {
-				return;
-			}
-
-			const markerRegex =
-				/\\clap\{\\color\{transparent\}\{TemporaryMarkerForMathLivePlugin\d{5}\}\}/g;
-
-			const newBody = note.body.replace(markerRegex, '');
-
-			if (newBody !== note.body) {
-				await joplin.data.put(
-					['notes', note.id],
-					null,
-					{ body: newBody }
-				);
-			}
-		}
-		async function mathlivedialogue(initiallatex: string, editortype?: string, katexblockid?:string) {
+		async function mathlivedialogue(initiallatex: string, editortype?: string) {
 			const startTime = Date.now();
 			await joplin.views.dialogs.setHtml(dialog, `
 				<form name="equationForm">
@@ -49,48 +29,13 @@ joplin.plugins.register({
 			if ((result.id == 'ok' || result.id == 'submit') && result.formData?.equationForm?.latex) {
 				const latex = result.formData.equationForm.latex;
 				if (editortype == 'richtext') {
-					const marker = String.raw`\clap{\color{transparent}{TemporaryMarkerForMathLivePlugin${katexblockid}}}`;
-
-					function escapeRegex(s: string): string {
-						return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-					}
-
-					const regex = new RegExp(
-						`\\$${escapeRegex(marker)}[\\s\\S]*?${escapeRegex(marker)}\\$`,
-						'g'
-					);
-					// Get the currently selected note
-					const note = await joplin.workspace.selectedNote();
-
-					if (!note) {
-						return;
-					}
-
-					// Replace the marked LaTeX with the new LaTeX from MathLive
-					const newBody = note.body.replace(
-						regex,
-						() => `$${latex}$`
-					);
-
-					// Save only if something changed
-					if (newBody !== note.body) {
-						await joplin.data.put(
-							['notes', note.id],
-							null,
-							{ body: newBody }
-						);
-					}
-					clearTemporaryMarkers();
-
+					return `$${latex}$`
 				} else {
 					await joplin.commands.execute(
 						'insertText',
 						`$${latex}$`
 					);
-					clearTemporaryMarkers();
 				}
-			} else {
-				clearTemporaryMarkers();
 			}
 
 		}
@@ -98,14 +43,19 @@ joplin.plugins.register({
 		await joplin.contentScripts.register(
 			ContentScriptType.MarkdownItPlugin,
 			'katexInterceptor',
-			'./script/katexinterceptor.js'
+			'./script/contentScripts/markdownItScriptLoader.js'
 		);
 		await joplin.contentScripts.onMessage(
 			'katexInterceptor',
 			async (message: any) => {
-
-				if (message.type === 'latex') {
-					mathlivedialogue(message.text, "richtext", message.katexblockid);
+				if (message.type === 'latexDialog') {
+					return await mathlivedialogue(message.text, "richtext");
+				}
+				if (message.type === 'insertLatex') {
+					await joplin.commands.execute(
+						'insertText',
+						message.latex
+					);
 				}
 			}
 		);
@@ -115,6 +65,8 @@ joplin.plugins.register({
 			iconName: 'fas fa-square-root-alt',
 			execute: async () => {
 				const selectedText = await joplin.commands.execute('selectedText') as string;
+				
+				//Open the math editor on the selected text dialog with the $ stripped from the ends.
 				mathlivedialogue(selectedText.replace(/^\$+|\$+$/g, ''));
 			},
 		});

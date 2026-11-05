@@ -1,4 +1,5 @@
 import { MathfieldElement } from 'mathlive';
+MathfieldElement.soundsDirectory = null;
 
 if (!customElements.get('math-field')) {
 	customElements.define('math-field', MathfieldElement);

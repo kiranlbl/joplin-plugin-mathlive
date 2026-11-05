@@ -1,3 +1,3 @@
 {
-	"extraScripts": ["script/mathlive.ts", "script/katexinterceptor.ts", "script/katex-renderer.ts", "script/focus.ts"]
+	"extraScripts": ["script/mathlive.ts", "script/contentScripts/markdownItScriptLoader.ts", "script/contentScripts/markdownIt.ts", "script/focus.ts"]
 }

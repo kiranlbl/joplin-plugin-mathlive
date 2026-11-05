@@ -218,6 +218,11 @@ const pluginConfig = { ...baseConfig, entry: './src/index.ts',
 						],
 					},
 				},
+				// MathLive's KaTeX fonts → next to the bundled mathlive script
+				{
+					from: path.resolve(__dirname, 'node_modules/mathlive/fonts'),
+					to: path.resolve(__dirname, 'dist/script/fonts'),
+				},
 			],
 		}),
 	] };
