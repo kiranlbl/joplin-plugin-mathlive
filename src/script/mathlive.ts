@@ -6,6 +6,8 @@ if (!customElements.get('math-field')) {
 }
 
 const mf = document.getElementById('mf') as MathfieldElement;
+mf.fontsDirectory = null;
+mf.soundsDirectory = null;
 mf.addEventListener('beforeinput', (ev: InputEvent) => {
 	if (ev.inputType === 'insertLineBreak') {
 		document.querySelector('form')?.requestSubmit();

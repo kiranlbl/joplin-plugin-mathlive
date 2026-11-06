@@ -6,6 +6,7 @@
 	"name": "MathLive Equation Editor",
 	"description": "Edit math equations, formulas and LaTeX/KaTeX expressions visually with MathLive — no need to learn LaTeX syntax.",
 	"author": "KiranB",
+    "platforms": ["desktop", "mobile"],
 	"homepage_url": "https://github.com/kiranlbl/joplin-plugin-mathlive",
 	"repository_url": "https://github.com/kiranlbl/joplin-plugin-mathlive",
 	"keywords": [

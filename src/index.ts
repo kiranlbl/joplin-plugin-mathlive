@@ -1,12 +1,10 @@
 import joplin from 'api';
 import { ToolbarButtonLocation, ContentScriptType, MenuItemLocation } from 'api/types';
-import { MathfieldElement } from 'mathlive';
-if (!customElements.get('math-field')) {
-	customElements.define('math-field', MathfieldElement);
-}
+
 
 joplin.plugins.register({
 	onStart: async function() {
+		const { platform } = await joplin.versionInfo();
 		async function mathlivedialogue(initiallatex: string, editortype?: string) {
 			const startTime = Date.now();
 			await joplin.views.dialogs.setHtml(dialog, `
@@ -78,7 +76,6 @@ joplin.plugins.register({
 				accelerator: 'CmdOrCtrl+Alt+M',
 			},
 		);
-
 		async function updateNoteView() {
 			// Get the current note from the workspace.
 			const note = await joplin.workspace.selectedNote();
