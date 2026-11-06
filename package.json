@@ -12,7 +12,7 @@
     "joplin-plugin"
   ],
   "files": [
-    "publish"
+    "publish", "icons"
   ],
   "devDependencies": {
     "@types/node": "^18.7.13",
