@@ -4,11 +4,9 @@ const mf_container = document.getElementById('mf-container');
 const platform = mf_container?.dataset.platform as 'desktop' | 'mobile';
 const initiallatex = mf_container?.dataset.latex;
 
-if (platform !== 'desktop') {
-	MathfieldElement.fontsDirectory = null;
-	MathfieldElement.soundsDirectory = null;
-}
 
+MathfieldElement.fontsDirectory = null;
+MathfieldElement.soundsDirectory = null;
 if (!customElements.get('math-field')) {
 	customElements.define('math-field', MathfieldElement);
 }

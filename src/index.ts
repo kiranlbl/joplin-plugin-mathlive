@@ -99,9 +99,14 @@ joplin.plugins.register({
 			<input type="hidden" id="latex" name="latex" />
 			</form>
 		`);	
+		await joplin.views.dialogs.addScript(dialog, './script/mathlive-fonts.css');
 		await joplin.views.dialogs.addScript(dialog, './script/mathlive.js');
 		await joplin.views.dialogs.addScript(dialog, './script/focus.js');
-		await joplin.views.dialogs.addScript(dialog, './script/dialog.css');
+		if (platform == "desktop") {
+			await joplin.views.dialogs.addScript(dialog, './script/dialog.css');
+		} else {
+			await joplin.views.dialogs.addScript(dialog, './script/dialog-mobile.css');
+		}
 		await joplin.views.dialogs.setButtons(dialog, [
 			{ id: 'ok', title: 'OK' },
 			{ id: 'cancel', title: 'Cancel' },
