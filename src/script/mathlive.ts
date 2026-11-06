@@ -1,6 +1,4 @@
 import { MathfieldElement } from 'mathlive';
-MathfieldElement.soundsDirectory = null;
-
 if (!customElements.get('math-field')) {
 	customElements.define('math-field', MathfieldElement);
 }
@@ -13,6 +11,16 @@ mf.addEventListener('beforeinput', (ev: InputEvent) => {
 		document.querySelector('form')?.requestSubmit();
 	}
 });
+const MFE = (window.MathLive && window.MathLive.MathfieldElement)
+    || window.MathfieldElement;
+
+if (MFE) {
+    MFE.fontsDirectory = null;
+    MFE.soundsDirectory = null;
+    MFE.virtualKeyboardMode = 'off'; // see #2
+} else {
+    console.error('MathLive config: MathfieldElement not found');
+}
 const latex = document.getElementById('latex') as HTMLInputElement;
 
 const sync = () => {

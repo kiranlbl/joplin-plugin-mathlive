@@ -19,6 +19,7 @@ joplin.plugins.register({
 				</form>
 			`);	
 			const result = await joplin.views.dialogs.open(dialog);
+			if (!result) return;
 			const elapsed = Date.now() - startTime;
 			const remaining = Math.max(0, 2400 - elapsed);
 			if (remaining > 0) {
