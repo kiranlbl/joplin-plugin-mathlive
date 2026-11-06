@@ -18,6 +18,7 @@ mf.style.width = '100%';
 mf.style.boxSizing = 'border-box';
 mf.value = initiallatex;
 mf_container?.appendChild(mf);
+mf.focus();
 
 
 
