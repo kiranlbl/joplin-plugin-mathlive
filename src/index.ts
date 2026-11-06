@@ -1,20 +1,21 @@
 import joplin from 'api';
 import { ToolbarButtonLocation, ContentScriptType, MenuItemLocation } from 'api/types';
 
-
 joplin.plugins.register({
 	onStart: async function() {
 		const { platform } = await joplin.versionInfo();
+		console.log(platform);
 		async function mathlivedialogue(initiallatex: string, editortype?: string) {
 			const startTime = Date.now();
+			const escapeHtml = (s: string) => // latex to be put in dialog
+				s.replace(/&/g, '&amp;').replace(/</g, '&lt;')
+				.replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 			await joplin.views.dialogs.setHtml(dialog, `
 				<form name="equationForm">
-				<math-field id="mf" autofocus math-virtual-keyboard-policy="sandboxed" 
-				style="
-					font-size: 1.5rem;
-					width: 100%;
-					box-sizing: border-box;
-				">${initiallatex}</math-field>
+				<div id="mf-container"
+				data-platform="${platform}"
+				data-latex="${escapeHtml(initiallatex)}"
+				></div>
 				<input type="hidden" id="latex" name="latex" />
 				</form>
 			`);	
@@ -91,15 +92,13 @@ joplin.plugins.register({
 		const dialog = await joplin.views.dialogs.create('mathLiveDialog');
 		await joplin.views.dialogs.setHtml(dialog, `
 			<form name="equationForm">
-			<math-field id="mf" autofocus math-virtual-keyboard-policy="sandboxed" 
-			style="
-				font-size: 1.5rem;
-				width: 100%;
-				box-sizing: border-box;
-			"></math-field>
+			<div id="mf-container"
+			data-platform="${platform}"
+			data-latex=""
+			></div>
 			<input type="hidden" id="latex" name="latex" />
 			</form>
-	`);	
+		`);	
 		await joplin.views.dialogs.addScript(dialog, './script/mathlive.js');
 		await joplin.views.dialogs.addScript(dialog, './script/focus.js');
 		await joplin.views.dialogs.addScript(dialog, './script/dialog.css');
