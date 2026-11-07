@@ -11,8 +11,9 @@ To insert an equation, use the menu item or the default shortcut: *Ctrl+Alt+M*
 ## How to use the editor
 The MathLive editor can be used entirely on a touchscreen or entirely by keyboard, making it both easier and faster than manually typing LaTeX.
 
-### Keyboard shortcuts
-All of these can be done with the on screen keyboard, but for a faster workflow, learn these shorthands.
+#### Keyboard shortcuts
+
+To type math quickly, you can optionally learn these to avoid using the on-screen keyboard.
 
 | Keyboard  | Math     |
 | --------- | -------- |
@@ -27,12 +28,12 @@ All of these can be done with the on screen keyboard, but for a faster workflow,
 | \         | Insert any LaTeX symbol by name <br/>![latex](https://github.com/kiranlbl/joplin-plugin-mathlive/raw/main/screenshots/latex.png)|
 
 
-## Editor specific notes:
+## Editor specific notes
 
-### Richtext editor:
+#### Richtext editor
 To edit an equation, double click on it.
 
-### Markdown editor:
+#### Markdown editor
 To edit an equation, select the full equation (including the $ signs at the ends), then press the equation button or *Ctrl+Alt+M.* 
 
 ![Markdown editor](https://github.com/kiranlbl/joplin-plugin-mathlive/raw/main/screenshots/markdowneditor.png)
