@@ -18,11 +18,11 @@ To type quickly, you can optionally learn these to avoid using the on-screen key
 | Keyboard  | Math     |
 | --------- | -------- |
 | +, - , =  | +, -, =  |
-| *         | Multiplication:<br/>![multiply](https://github.com/kiranlbl/joplin-plugin-mathlive/raw/main/screenshots/multiply.png)       |
-| /         | Division/fraction:<br/>![division](https://github.com/kiranlbl/joplin-plugin-mathlive/raw/main/screenshots/division.png)       |
-| ^         | Exponents: <br/>![exponent](https://github.com/kiranlbl/joplin-plugin-mathlive/raw/main/screenshots/exp.png)            |
-| _         | Subscript: <br/>![subscript](https://github.com/kiranlbl/joplin-plugin-mathlive/raw/main/screenshots/subscript.png)     |
-| sqrt      | Square root: <br/>![sqare root](https://github.com/kiranlbl/joplin-plugin-mathlive/raw/main/screenshots/sqrt.png)         |
+| *         | Multiplication<br/>![multiply](https://github.com/kiranlbl/joplin-plugin-mathlive/raw/main/screenshots/multiply.png)       |
+| /         | Division/fraction<br/>![division](https://github.com/kiranlbl/joplin-plugin-mathlive/raw/main/screenshots/division.png)       |
+| ^         | Exponents <br/>![exponent](https://github.com/kiranlbl/joplin-plugin-mathlive/raw/main/screenshots/exp.png)            |
+| _         | Subscript <br/>![subscript](https://github.com/kiranlbl/joplin-plugin-mathlive/raw/main/screenshots/subscript.png)     |
+| sqrt      | Square root <br/>![sqare root](https://github.com/kiranlbl/joplin-plugin-mathlive/raw/main/screenshots/sqrt.png)         |
 | sin, log, lim       | sin, log, lim |
 | delta, Delta | Greek letter names are replaced with the actual letters. e.g. delta=δ, Delta=Δ |
 | pi        | π |
