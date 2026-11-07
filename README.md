@@ -4,6 +4,10 @@ Edit math equations, formulas and LaTeX/KaTeX expressions visually with MathLive
 
 ![Editing an equation with MathLive](https://github.com/kiranlbl/joplin-plugin-mathlive/raw/main/screenshots/editor.png)
 
+To insert an equation, use the menu item or the default shortcut: *Ctrl+Alt+M*
+
+![Toolbar button](https://github.com/kiranlbl/joplin-plugin-mathlive/raw/main/screenshots/toolbar.png)
+
 ## How to use the editor
 The MathLive editor can be used entirely on a touchscreen or entirely by keyboard, making it both easier and faster than manually typing LaTeX.
 
@@ -18,9 +22,6 @@ The MathLive editor can be used entirely on a touchscreen or entirely by keyboar
 | pi        | π |
 | \         | Insert any LaTeX symbol by name ![latex](https://github.com/kiranlbl/joplin-plugin-mathlive/raw/main/screenshots/latex.png)|
 
-![Toolbar button](https://github.com/kiranlbl/joplin-plugin-mathlive/raw/main/screenshots/toolbar.png)
-
-To insert an equation, use the menu item or the default shortcut: *Ctrl+Alt+M*
 
 ## Editor specific notes:
 
