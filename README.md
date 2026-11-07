@@ -13,10 +13,11 @@ The MathLive editor can be used entirely on a touchscreen or entirely by keyboar
 
 | Keyboard  | Math     |
 | --------- | -------- |
+| +, - , =  | +, -, =  |
 | *         | Multiplication:<br/>![multiply](https://github.com/kiranlbl/joplin-plugin-mathlive/raw/main/screenshots/multiply.png)       |
 | /         | Division/fraction:<br/>![division](https://github.com/kiranlbl/joplin-plugin-mathlive/raw/main/screenshots/division.png)       |
 | ^         | Exponents: <br/>![exponent](https://github.com/kiranlbl/joplin-plugin-mathlive/raw/main/screenshots/exp.png)            |
-| sqrt      | Sqare root: <br/>![sqare root](https://github.com/kiranlbl/joplin-plugin-mathlive/raw/main/screenshots/sqrt.png)         |
+| sqrt      | Square root: <br/>![sqare root](https://github.com/kiranlbl/joplin-plugin-mathlive/raw/main/screenshots/sqrt.png)         |
 | _         | Subscript: <br/>![subscript](https://github.com/kiranlbl/joplin-plugin-mathlive/raw/main/screenshots/subscript.png)     |
 | delta, Delta | Greek letter names are replaced with the letters: delta=δ, Delta=Δ |
 | pi        | π |
