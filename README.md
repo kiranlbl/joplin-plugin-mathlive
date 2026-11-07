@@ -14,7 +14,6 @@ The MathLive editor can be used entirely on a touchscreen or entirely by keyboar
 | _         | ![subscript](https://github.com/kiranlbl/joplin-plugin-mathlive/raw/main/screenshots/subscript.png)     |
 | delta, Delta | Greek letter names are replaced with the letters: delta=δ, Delta=Δ |
 | pi        | π |
-
 | \         | Insert any LaTeX symbol by name |
 
 ![Editing an equation with MathLive](https://github.com/kiranlbl/joplin-plugin-mathlive/raw/main/screenshots/editor.png)
