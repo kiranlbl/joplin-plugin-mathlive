@@ -11,6 +11,9 @@ To insert an equation, use the menu item or the default shortcut: *Ctrl+Alt+M*
 ## How to use the editor
 The MathLive editor can be used entirely on a touchscreen or entirely by keyboard, making it both easier and faster than manually typing LaTeX.
 
+### Keyboard shortcuts
+All of these can be done with the on screen keyboard, but for a faster workflow, learn these shorthands.
+
 | Keyboard  | Math     |
 | --------- | -------- |
 | +, - , =  | +, -, =  |
