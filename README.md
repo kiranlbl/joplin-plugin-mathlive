@@ -27,7 +27,7 @@ To type quickly, you can optionally learn these to avoid using the on-screen key
 | delta, Delta | Greek letter names are replaced with the actual letters. e.g. delta=δ, Delta=Δ |
 | pi        | π |
 | \         | Insert any LaTeX symbol by name <br/>![latex](https://github.com/kiranlbl/joplin-plugin-mathlive/raw/main/screenshots/latex.png)|
-| **Many** more: | https://mathlive.io/mathfield/reference/keybindings/|
+| Many more: | https://mathlive.io/mathfield/reference/keybindings/|
 
 
 ## Editor specific notes
