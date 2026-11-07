@@ -8,7 +8,7 @@ To insert an equation, use the menu item or the default shortcut: *Ctrl+Alt+M*
 
 ![Toolbar button](https://github.com/kiranlbl/joplin-plugin-mathlive/raw/main/screenshots/toolbar.png)
 
-## How to use the editor
+## How to edit math
 The MathLive editor can be used entirely on a touchscreen or entirely by keyboard, making it both easier and faster than manually typing LaTeX.
 
 ### Keyboard shortcuts
