@@ -5,6 +5,7 @@ joplin.plugins.register({
 	onStart: async function() {
 		const { platform } = await joplin.versionInfo();
 		console.log(platform);
+		// Function to open dialog.
 		async function mathlivedialogue(initiallatex: string, editortype?: string) {
 			const startTime = Date.now();
 			const escapeHtml = (s: string) => // latex to be put in dialog
@@ -29,7 +30,7 @@ joplin.plugins.register({
 			if ((result.id == 'ok' || result.id == 'submit') && result.formData?.equationForm?.latex) {
 				const latex = result.formData.equationForm.latex;
 				if (editortype == 'richtext') {
-					return `$${latex}$`
+					return `$${latex}$` // This return is used in      await joplin.contentScripts.onMessage('katexInterceptor',
 				} else {
 					await joplin.commands.execute(
 						'insertText',
@@ -49,7 +50,7 @@ joplin.plugins.register({
 			'katexInterceptor',
 			async (message: any) => {
 				if (message.type === 'latexDialog') {
-					return await mathlivedialogue(message.text, "richtext");
+					return await mathlivedialogue(message.text, "richtext"); // The return is used in mathlive.ts, which will then send a 'insertLatex' message.
 				}
 				if (message.type === 'insertLatex') {
 					await joplin.commands.execute(
@@ -89,6 +90,7 @@ joplin.plugins.register({
 			updateNoteView();
 		});
 		updateNoteView();
+		// Create dialog and initially attach scripts.
 		const dialog = await joplin.views.dialogs.create('mathLiveDialog');
 		await joplin.views.dialogs.setHtml(dialog, `
 			<form name="equationForm">

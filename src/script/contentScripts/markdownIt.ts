@@ -19,20 +19,24 @@ function isLatexSource(source: Element | null): boolean {
 
 async function handleKatexEdit(editor: any) {
 	const latex = currentSource?.textContent ?? '';
-
+	// Tell index.ts to open the equation editor, and wait until a result is returned.
 	const result = await webviewApi.postMessage(CONTENT_SCRIPT_ID, {type: 'latexDialog', text: latex,});
-	if (!result) return;
+	if (!result) return; // Returns if they clicked cancel.
 
 	if (!currentEditable || !currentEditable.isConnected) {
+		// Tell index.ts to insert latex at the current selection, current selection being the equation to be replaced.
 		await webviewApi.postMessage(CONTENT_SCRIPT_ID, { type: 'insertLatex', latex: result });
 		return;
 	}
 
 	editor.focus();
 	editor.selection.select(currentEditable);
+	// Tell index.ts to insert latex at the current selection, current selection being the equation to be replaced.
 	await webviewApi.postMessage(CONTENT_SCRIPT_ID, { type: 'insertLatex', latex: result });
 }
 
+
+// This function intercepts Joplin's default KaTeX editor and replaces it with our editor (handleKatexEdit()).
 function install(editor: any): boolean {
 	if (!editor || typeof webviewApi === 'undefined') return false; // wait for BOTH
 	if (editor[INSTALL_FLAG]) return true;
