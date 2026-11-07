@@ -22,7 +22,7 @@ All of these can be done with the on screen keyboard, but for a faster workflow,
 | ^         | Exponents: <br/>![exponent](https://github.com/kiranlbl/joplin-plugin-mathlive/raw/main/screenshots/exp.png)            |
 | sqrt      | Square root: <br/>![sqare root](https://github.com/kiranlbl/joplin-plugin-mathlive/raw/main/screenshots/sqrt.png)         |
 | _         | Subscript: <br/>![subscript](https://github.com/kiranlbl/joplin-plugin-mathlive/raw/main/screenshots/subscript.png)     |
-| delta, Delta | Greek letter names are replaced with the letters: delta=δ, Delta=Δ |
+| delta, Delta | Greek letter names are replaced with the actual letters. e.g. delta=δ, Delta=Δ |
 | pi        | π |
 | \         | Insert any LaTeX symbol by name <br/>![latex](https://github.com/kiranlbl/joplin-plugin-mathlive/raw/main/screenshots/latex.png)|
 
