@@ -5,6 +5,41 @@ joplin.plugins.register({
 	onStart: async function() {
 		const { platform } = await joplin.versionInfo();
 		console.log(platform);
+		/**
+		 * Strips a leading "\displaylines{" and trailing "}" from a LaTeX string.
+		 * Also removes a trailing "\\" (or "\\[len]" / "\\*") at the end of the
+		 * inner content, e.g. "\displaylines{x=1 \\}" -> "x=1".
+		 */
+		async function stripDisplaylines(latex: string): Promise<string> {
+			let s = latex.trim();
+
+			// Fast path: only bother if it actually starts with \displaylines{
+			if (!/^\\displaylines\{/.test(s)) return latex;
+
+			// Find the matching closing brace, skipping escaped braces \{ \}
+			const open = s.indexOf('{');                    // the brace after \displaylines
+			let depth = 0;
+			let close = -1;
+
+			for (let i = open; i < s.length; i++) {
+				const ch = s[i];
+				if (ch === '\\') { i++; continue; }           // skip escaped char (\{, \}, \\, \frac...)
+				if (ch === '{') depth++;
+				else if (ch === '}') {
+					depth--;
+					if (depth === 0) { close = i; break; }
+				}
+			}
+
+			if (close === -1) return latex;                 // unbalanced: leave input untouched
+
+			let inner = s.slice(open + 1, close).trim();
+
+			// Strip a trailing "\\" row separator, with optional * or [len] argument
+			inner = inner.replace(/\\\\\s*(\*\s*)?(\[\s*[-\w.]+\s*\]\s*)?$/, '').trim();
+
+			return inner;
+			}
 		// Function to open dialog.
 		async function mathlivedialogue(initiallatex: string, editortype?: string) {
 			const startTime = Date.now();
@@ -15,7 +50,7 @@ joplin.plugins.register({
 				<form name="equationForm">
 				<div id="mf-container"
 				data-platform="${platform}"
-				data-latex="${escapeHtml(initiallatex)}"
+				data-latex="\\displaylines{${escapeHtml(initiallatex)}}"
 				></div>
 				<input type="hidden" id="latex" name="latex" />
 				</form>
@@ -29,12 +64,13 @@ joplin.plugins.register({
 			}
 			if ((result.id == 'ok' || result.id == 'submit') && result.formData?.equationForm?.latex) {
 				const latex = result.formData.equationForm.latex;
+				const cleanedlatex = await stripDisplaylines(latex);
 				if (editortype == 'richtext') {
-					return `$${latex}$` // This return is used in      await joplin.contentScripts.onMessage('katexInterceptor',
+					return `$${cleanedlatex}$` // This return is used in      await joplin.contentScripts.onMessage('katexInterceptor',
 				} else {
 					await joplin.commands.execute(
 						'insertText',
-						`$${latex}$`
+						`$${cleanedlatex}$`
 					);
 				}
 			}
