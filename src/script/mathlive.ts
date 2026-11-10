@@ -22,12 +22,13 @@ mf_container?.appendChild(mf);
 mf.focus();
 
 
-
-mf.addEventListener('beforeinput', (ev: InputEvent) => {   // If enter is pressed, submit the dialog.
-	if (ev.inputType === 'insertLineBreak') {
-		document.querySelector('form')?.requestSubmit();
+mf.addEventListener('keydown', (ev) => {
+	if (ev.key === 'Enter' && !ev.ctrlKey && !ev.metaKey) {
+    	ev.preventDefault();   // MathLive bails out on defaultPrevented events [cite:048ef113-1]
+    	ev.stopPropagation();  // never reaches MathLive's internal handler → no new line
+    	document.querySelector('form')?.requestSubmit();
 	}
-});
+}, true); // ← capture: must run before MathLive's shadow-DOM handlers
 
 // Capture latex from editor in "latex" form entry.
 const latex = document.getElementById('latex') as HTMLInputElement; 

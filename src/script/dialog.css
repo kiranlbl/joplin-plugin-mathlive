@@ -1,4 +1,5 @@
 #joplin-plugin-content {
   min-width: 500px;
-  min-height: 500px;
+  min-height: 50px;
+  padding-bottom: 260px;
 }
