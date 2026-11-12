@@ -15,12 +15,18 @@ if (!customElements.get('math-field')) {
 const mf = new MathfieldElement();
 mf.setAttribute('math-virtual-keyboard-policy', 'sandboxed');
 mf.style.fontSize = '1.5rem';
-mf.style.width = '100%';
+mf.style.display = 'inline-block';
+if (platform === 'desktop') {
+  mf.style.width = 'max-content';
+  mf.style.minWidth = '30rem';
+} else {
+  mf.style.width = '100%';       // mobile: fill, scroll internally
+}
 mf.style.boxSizing = 'border-box';
+mf.style.verticalAlign = 'middle';   // if it sits inline with other text
 mf.value = initiallatex;
 mf_container?.appendChild(mf);
 mf.focus();
-
 
 mf.addEventListener('keydown', (ev) => {
 	if (ev.key === 'Enter' && !ev.ctrlKey && !ev.metaKey) {

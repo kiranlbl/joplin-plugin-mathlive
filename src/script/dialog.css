@@ -1,5 +1,7 @@
 #joplin-plugin-content {
-  min-width: 500px;
+  display: flex;
+  flex-direction: column;   /* Joplin requires flex for accurate size measurement */
+  width: max-content; 
   min-height: 50px;
   padding-bottom: 260px;
 }
